@@ -1,0 +1,1093 @@
+{
+  "version": 2,
+  "schema": {
+  },
+  "features": [
+    {
+      "out": "u_algo_mt_app_id",
+      "expr": "str(app_id)",
+      "comment": "应用id，ttvoice,zaiya,huanyou",
+      "consts": {},
+      "feature_column": {
+      "dtype": "string",
+      "featureType": "Sparse"
+      }
+    },
+    {
+      "out": "u_algo_mt_province",
+      "expr": "str(u_algo_mt_province)",
+      "comment": "用户省份",
+      "consts": {},
+      "feature_column": {
+      "dtype": "string",
+      "embedding_name":"province_field",
+      "featureType": "Sparse"
+      }
+    },
+    {
+      "out": "o_algo_mt_province",
+      "expr": "str(o_algo_mt_province)",
+      "comment": "房主省份",
+      "consts": {},
+      "feature_column": {
+      "dtype": "string",
+      "embedding_name":"province_field",
+      "featureType": "Sparse"
+      }
+    },
+    {
+      "out": "u_algo_mt_city",
+      "expr": "str(u_algo_mt_city)",
+      "comment": "用户城市",
+      "consts": {},
+      "feature_column": {
+      "dtype": "string",
+      "embedding_name":"city_field",
+      "featureType": "Sparse"
+      }
+    },
+    {
+      "out": "o_algo_mt_city",
+      "expr": "str(o_algo_mt_city)",
+      "comment": "房主城市",
+      "consts": {},
+      "feature_column": {
+      "dtype": "string",
+      "embedding_name":"city_field",
+      "featureType": "Sparse"
+      }
+    },
+    {
+      "out": "e_algo_mt_tag_id_exp",
+      "expr": "str(tag_id_exp)",
+      "comment": "曝光的游戏类型ID(无筛选)",
+      "consts": {},
+      "feature_column": {
+      "dtype": "string",
+      "embedding_name":"tagid_field",
+      "featureType": "Sparse"
+      }
+    },
+    {
+      "out": "e_algo_mt_card_id_exp",
+      "expr": "str(card_id_exp)",
+      "comment": "曝光的游戏类型对应游戏卡ID",
+      "consts": {},
+      "feature_column": {
+      "dtype": "string",
+      "embedding_name":"cardid_field",
+      "featureType": "Sparse"
+      }
+    },
+    {
+      "out": "e_algo_mt_room_para_tag_list",
+      "expr": "room_para_tag_list",
+      "comment": "房间发布属性",
+      "consts": {},
+      "feature_column": {
+        "dtype": "string",
+        "embedding_name":"tag_field",
+        "maxlen": 10,
+        "featureType": "VarLenSparse"
+      }
+    },
+    {
+      "out": "e_algo_mt_male_user_cnt",
+      "expr": "male_user_cnt",
+      "comment": "房间内曝光时刻男性用户数量",
+      "consts": {},
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "e_algo_mt_female_user_cnt",
+      "expr": "female_user_cnt",
+      "comment": "房间内曝光时刻女性用户数量",
+      "consts": {},
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "e_algo_mt_male_mic_user_cnt",
+      "expr": "male_mic_user_cnt",
+      "comment": "麦上曝光时刻男性用户数量",
+      "consts": {},
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "e_algo_mt_female_mic_user_cnt",
+      "expr": "female_mic_user_cnt",
+      "comment": "麦上曝光时刻女性用户数量",
+      "consts": {},
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "e_algo_mt_publish_time",
+      "expr": "int(time_diff(room_exposure_time,if(equal(publish_time,STR_EMPTY),room_exposure_time,publish_time),STR_SEC))",
+      "comment": "房间发布时间（s）",
+      "consts": {
+        "STR_SEC": {
+          "type": "String",
+          "value": "sec"
+        },
+        "STR_EMPTY": {
+          "type": "String",
+          "value": ""
+        }
+      },
+      "feature_column": {
+      "dtype": "int32",
+      "featureType": "Dense",
+      "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_enter_tag_ls_6time",
+      "expr": "enter_tag_ls_6time",
+      "comment": "用户近6次进房房间类型",
+      "consts": {},
+      "feature_column": {
+        "dtype": "string",
+        "embedding_name":"tagid_field",
+        "maxlen": 6,
+        "featureType": "VarLenSparse"
+      }
+    },
+    {
+      "out": "u_algo_mt_enter_room_para_tag_ls_6time",
+      "expr": "enter_room_para_tag_ls_6time",
+      "comment": "用户近6次进房房间发布属性标签",
+      "consts": {},
+      "feature_column": {
+        "dtype": "string",
+        "embedding_name":"tag_field",
+        "maxlen": 30,
+        "featureType": "VarLenSparse"
+      }
+    },
+    {
+      "out": "u_algo_mt_gangup_tag_ls_6time",
+      "expr": "gangup_tag_ls_6time",
+      "comment": "用户近6次开黑房间类型",
+      "consts": {},
+      "feature_column": {
+        "dtype": "string",
+        "embedding_name":"tagid_field",
+        "maxlen": 6,
+        "featureType": "VarLenSparse"
+      }
+    },
+    {
+      "out": "u_algo_mt_gangup_room_para_tag_ls_6time",
+      "expr": "gangup_room_para_tag_ls_6time",
+      "comment": "用户近6次开黑房间发布属性标签",
+      "consts": {},
+      "feature_column": {
+        "dtype": "string",
+        "embedding_name":"tag_field",
+        "maxlen": 30,
+        "featureType": "VarLenSparse"
+      }
+    },
+    {
+      "out": "u_algo_mt_platform_name",
+      "expr": "str(u_algo_mt_platform_name)",
+      "comment": "平台名称，PC,IOS,Android，取末次登录平台信息",
+      "consts": {},
+      "feature_column": {
+      "dtype": "string",
+      "featureType": "Sparse"
+      }
+    },
+    {
+      "out": "u_algo_mt_reg_time",
+      "expr": "int(time_diff(room_exposure_time,if(equal(u_algo_mt_reg_time,STR_EMPTY),STR_REG,u_algo_mt_reg_time),STR_DAY))",
+      "comment": "用户注册天数",
+      "consts": {
+        "STR_DAY": {
+          "type": "String",
+          "value": "day"
+        },
+        "STR_EMPTY": {
+          "type": "String",
+          "value": ""
+        },
+        "STR_REG": {
+          "type": "String",
+          "value": "2023-01-01 00:00:00"
+        }
+      },
+      "feature_column": {
+      "dtype": "int32",
+      "featureType": "Dense",
+      "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_gender",
+      "expr": "str(u_algo_mt_gender)",
+      "comment": "用户性别，1-男",
+      "consts": {},
+      "feature_column": {
+      "dtype": "string",
+      "featureType": "Sparse"
+      }
+    },
+    {
+      "out": "u_algo_mt_age",
+      "expr": "u_algo_mt_age",
+      "comment": "用户当前年龄",
+      "consts": {},
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "o_algo_mt_platform_name",
+      "expr": "str(o_algo_mt_platform_name)",
+      "comment": "房主平台名称，PC,IOS,Android，取末次登录平台信息",
+      "consts": {},
+      "feature_column": {
+      "dtype": "string",
+      "featureType": "Sparse"
+      }
+    },
+    {
+      "out": "o_algo_mt_reg_time",
+      "expr": "int(time_diff(room_exposure_time,if(equal(o_algo_mt_reg_time,STR_EMPTY),STR_REG,o_algo_mt_reg_time),STR_DAY))",
+      "comment": "房主注册天数",
+      "consts": {
+        "STR_DAY": {
+          "type": "String",
+          "value": "day"
+        },
+        "STR_EMPTY": {
+          "type": "String",
+          "value": ""
+        },
+        "STR_REG": {
+          "type": "String",
+          "value": "2023-01-01 00:00:00"
+        }
+      },
+      "feature_column": {
+      "dtype": "int32",
+      "featureType": "Dense",
+      "operation": "log_normal"
+      }
+    },
+    {
+      "out": "o_algo_mt_gender",
+      "expr": "str(o_algo_mt_gender)",
+      "comment": "房主性别，1-男",
+      "consts": {},
+      "feature_column": {
+      "dtype": "string",
+      "featureType": "Sparse"
+      }
+    },
+    {
+      "out": "o_algo_mt_age",
+      "expr": "o_algo_mt_age",
+      "comment": "房主当前年龄",
+      "consts": {},
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_publish_tag_cnt_3w",
+      "expr": "get_dflt(i_algo_mt_publish_tag_cnt_3w,str(tag_id_exp),INT_0)",
+      "comment": "3周房间被发布次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_exposure_tag_cnt_3w",
+      "expr": "get_dflt(i_algo_mt_exposure_tag_cnt_3w,str(tag_id_exp),INT_0)",
+      "comment": "3周房间被曝光次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_click_tag_cnt_3w",
+      "expr": "get_dflt(i_algo_mt_click_tag_cnt_3w,str(tag_id_exp),INT_0)",
+      "comment": "3周房间被点击次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_stay_tag_dur_3w",
+      "expr": "get_dflt(i_algo_mt_stay_tag_dur_3w,str(tag_id_exp),INT_0)",
+      "comment": "3周房间被停留时长",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_gang_up_tag_cnt_3w",
+      "expr": "get_dflt(i_algo_mt_gang_up_tag_cnt_3w,str(tag_id_exp),INT_0)",
+      "comment": "3周房间被开黑次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_on_mic_tag_cnt_3w",
+      "expr": "get_dflt(i_algo_mt_on_mic_tag_cnt_3w,str(tag_id_exp),INT_0)",
+      "comment": "3周房间被上麦次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_publish_tag_cnt_1w",
+      "expr": "get_dflt(i_algo_mt_publish_tag_cnt_1w,str(tag_id_exp),INT_0)",
+      "comment": "1周房间被发布次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_exposure_tag_cnt_1w",
+      "expr": "get_dflt(i_algo_mt_exposure_tag_cnt_1w,str(tag_id_exp),INT_0)",
+      "comment": "1周房间被曝光次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_click_tag_cnt_1w",
+      "expr": "get_dflt(i_algo_mt_click_tag_cnt_1w,str(tag_id_exp),INT_0)",
+      "comment": "1周房间被点击次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_stay_tag_dur_1w",
+      "expr": "get_dflt(i_algo_mt_stay_tag_dur_1w,str(tag_id_exp),INT_0)",
+      "comment": "1周房间被停留时长",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_gang_up_tag_cnt_1w",
+      "expr": "get_dflt(i_algo_mt_gang_up_tag_cnt_1w,str(tag_id_exp),INT_0)",
+      "comment": "1周房间被开黑次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_on_mic_tag_cnt_1w",
+      "expr": "get_dflt(i_algo_mt_on_mic_tag_cnt_1w,str(tag_id_exp),INT_0)",
+      "comment": "1周房间被上麦次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_publish_tag_cnt_3d",
+      "expr": "get_dflt(i_algo_mt_publish_tag_cnt_3d,str(tag_id_exp),INT_0)",
+      "comment": "3天房间被发布次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_exposure_tag_cnt_3d",
+      "expr": "get_dflt(i_algo_mt_exposure_tag_cnt_3d,str(tag_id_exp),INT_0)",
+      "comment": "3天房间被曝光次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_click_tag_cnt_3d",
+      "expr": "get_dflt(i_algo_mt_click_tag_cnt_3d,str(tag_id_exp),INT_0)",
+      "comment": "3天房间被点击次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_stay_tag_dur_3d",
+      "expr": "get_dflt(i_algo_mt_stay_tag_dur_3d,str(tag_id_exp),INT_0)",
+      "comment": "3天房间被停留时长",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_gang_up_tag_cnt_3d",
+      "expr": "get_dflt(i_algo_mt_gang_up_tag_cnt_3d,str(tag_id_exp),INT_0)",
+      "comment": "3天房间被开黑次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "i_algo_mt_on_mic_tag_cnt_3d",
+      "expr": "get_dflt(i_algo_mt_on_mic_tag_cnt_3d,str(tag_id_exp),INT_0)",
+      "comment": "3天房间被上麦次数",
+      "consts": {
+        "INT_0": {
+          "type": "Int",
+          "value": 0
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_exp_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_list_tag_exp_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天首页用户tag_id曝光次数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_enter_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_list_tag_enter_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天首页用户tag_id进房次数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_gangup_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_list_tag_gangup_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天首页用户tag_id开黑次数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_duration_1w",
+      "expr": "get_dflt(u_algo_mt_list_tag_duration_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天首页用户tag_id停留时长",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_mic_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_list_tag_mic_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天首页用户tag_id上麦次数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_exp_room_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_list_tag_exp_room_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天首页用户tag_id曝光房间数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_enter_room_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_list_tag_enter_room_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天首页用户tag_id进房房间数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_gangup_room_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_list_tag_gangup_room_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天首页用户tag_id开黑房间数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_mic_room_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_list_tag_mic_room_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天首页用户tag_id上麦房间数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_tag_enter_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_tag_enter_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天用户tag_id进房次数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_tag_gangup_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_tag_gangup_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天用户tag_id开黑次数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_tag_duration_1w",
+      "expr": "get_dflt(u_algo_mt_tag_duration_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天用户tag_id停留时长",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_tag_mic_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_tag_mic_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天用户tag_id上麦房间数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_tag_enter_room_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_tag_enter_room_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天用户tag_id进房房间数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_tag_gangup_room_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_tag_gangup_room_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天用户tag_id开黑房间数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_tag_mic_room_cnt_1w",
+      "expr": "get_dflt(u_algo_mt_tag_mic_room_cnt_1w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近7天用户tag_id上麦房间数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_exp_cnt_3w",
+      "expr": "get_dflt(u_algo_mt_list_tag_exp_cnt_3w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近21天首页用户tag_id曝光次数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_enter_cnt_3w",
+      "expr": "get_dflt(u_algo_mt_list_tag_enter_cnt_3w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近21天首页用户tag_id进房次数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_gangup_cnt_3w",
+      "expr": "get_dflt(u_algo_mt_list_tag_gangup_cnt_3w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近21天首页用户tag_id开黑次数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_duration_3w",
+      "expr": "get_dflt(u_algo_mt_list_tag_duration_3w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近21天首页用户tag_id停留时长",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_mic_cnt_3w",
+      "expr": "get_dflt(u_algo_mt_list_tag_mic_cnt_3w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近21天首页用户tag_id上麦次数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_exp_room_cnt_3w",
+      "expr": "get_dflt(u_algo_mt_list_tag_exp_room_cnt_3w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近21天首页用户tag_id曝光房间数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_enter_room_cnt_3w",
+      "expr": "get_dflt(u_algo_mt_list_tag_enter_room_cnt_3w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近21天首页用户tag_id进房房间数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_gangup_room_cnt_3w",
+      "expr": "get_dflt(u_algo_mt_list_tag_gangup_room_cnt_3w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近21天首页用户tag_id开黑房间数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    },
+    {
+      "out": "u_algo_mt_list_tag_mic_room_cnt_3w",
+      "expr": "get_dflt(u_algo_mt_list_tag_mic_room_cnt_3w, str(tag_id_exp), FLOAT_0)",
+      "comment": "最近21天首页用户tag_id上麦房间数",
+      "consts": {
+        "FLOAT_0": {
+          "type": "Float",
+          "value": 0.0
+        }
+      },
+      "feature_column": {
+        "dtype": "float32",
+        "featureType": "Dense",
+        "operation": "log_normal"
+      }
+    }
+  ],
+  "label": [
+    {
+      "out": "label_enter",
+      "expr": "if_ge(int(duration),INT_2)",
+      "consts": {
+        "INT_2": {
+          "type": "Int",
+          "value": 2
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "label",
+        "comment": "标签_是否进房"
+      }
+    },
+    {
+      "out": "label_gangup",
+      "expr": "if_ge(int(duration),kaihei_duration)",
+      "consts": {
+        "kaihei_duration": {
+          "type": "Int",
+          "value": 600
+        }
+      },
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "label",
+        "comment": "标签_是否进房"
+      }
+    }
+  ],
+  "field": [
+    {
+      "out": "user_id",
+      "expr": "str(user_id)",
+      "feature_column": {
+        "dtype": "string",
+        "featureType": "field",
+        "comment": "主键user_id"
+      }
+    },
+    {
+      "out": "room_owner_user_id",
+      "expr": "str(room_owner_user_id)",
+      "feature_column": {
+        "dtype": "string",
+        "featureType": "field",
+        "comment": "room_owner_user_id"
+      }
+    },
+    {
+      "out": "room_id",
+      "expr": "str(room_id)",
+      "feature_column": {
+        "dtype": "string",
+        "featureType": "field",
+        "comment": "主键room_id"
+      }
+    },
+    {
+      "out": "room_exposure_time",
+      "expr": "str(room_exposure_time)",
+      "feature_column": {
+        "dtype": "string",
+        "featureType": "field",
+        "comment": "room_exposure_time"
+      }
+    },
+    {
+      "out": "duration",
+      "expr": "int(duration)",
+      "feature_column": {
+        "dtype": "int32",
+        "featureType": "field",
+        "comment": "进房停留时长"
+      }
+    },
+    {
+      "out": "dt",
+      "expr": "str(dt)",
+      "feature_column": {
+        "dtype": "string",
+        "featureType": "field",
+        "comment": "dt"
+      }
+    }
+  ]
+}
