@@ -118,7 +118,7 @@ if __name__ == "__main__":
                       'i_algo_mt_click_tag_cnt_3d': {}, 'i_algo_mt_stay_tag_dur_3d': {},
                       'i_algo_mt_gang_up_tag_cnt_3d': {}, 'i_algo_mt_on_mic_tag_cnt_3d': {}}
     df = ef.createDF(spark, tmp, config_map=config_local_dir, token_map={},
-                     special_expr=special_expr,
+                     special_expr={},
                      schema_default=schema_default,
                      custom_func='', repartition_numb=200)
 
